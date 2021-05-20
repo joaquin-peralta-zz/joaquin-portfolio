@@ -14,18 +14,20 @@ const SlideGallery = ({ slides }: Props) => {
       <Row className="p-0">
         {slides.map((url) => (
           <Col key={url} className="p-0 text-center">
-            <Image
-              src={url}
-              alt={`Imagen de portada de ${url} `}
-              width={256}
-              height={256}
-              layout="intrinsic"
-              className={styles.img}
-            />
-            <button className={styles.imgButton} type="button">
-              Ver <br />
-              proyecto
-            </button>
+            <div className="position-relative">
+              <Image
+                src={url}
+                alt={`Imagen de portada de ${url} `}
+                width={256}
+                height={256}
+                layout="intrinsic"
+                className={styles.img}
+              />
+              <button className={styles.button} type="button">
+                Ver <br />
+                proyecto
+              </button>
+            </div>
           </Col>
         ))}
       </Row>

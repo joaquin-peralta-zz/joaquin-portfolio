@@ -1,0 +1,35 @@
+@import '../variables';
+
+.card {
+  background-color: $lightbackground;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 3px 5px 3px 1px rgba(0, 0, 0, 0.4);
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: 5px 5px 6px 6px rgba(0, 0, 0, 0.4);
+    transition: 0.2s;
+  }
+}
+
+.title {
+  font-family: 'Roboto Mono', monospace;
+  color: $primary;
+  font-weight: 700;
+}
+
+.years {
+  font-family: 'Roboto Mono', monospace;
+  color: $lightgray;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.institution {
+  font-family: 'Roboto', sans-serif;
+  color: $gray;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+}

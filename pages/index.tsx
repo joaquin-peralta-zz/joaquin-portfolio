@@ -1,6 +1,5 @@
 import styles from '@styles/pages/Home.module.scss';
 import Head from 'next/head';
-import Navbar from '@components/Navbar/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,7 +8,6 @@ import LinkButton from '@components/LinkButton/LinkButton';
 import { Avatar, AvatarInfo } from '@components/Avatar/Avatar';
 import SlideGallery from '@components/SlideGallery/SlideGallery';
 import MyForm from '@components/MyForm/MyForm';
-import Footer from '@components/Footer/Footer';
 
 export default function Home() {
   return (
@@ -28,16 +26,14 @@ export default function Home() {
         />
       </Head>
 
-      <Navbar />
-
       <main className={styles.mainContent}>
         <Container>
-          <p className="to-monospace-primary mb-2">Hola, soy</p>
+          <p className={styles.toMonospacePrimary}>Hola, soy</p>
           <h1>
             Joaquín, <br />
-            <span className="color-gray">web developer.</span>
+            <span className={styles.colorGray}>web developer.</span>
           </h1>
-          <p className="to-monospace-gray mb-5">Freelance Frontend Developer</p>
+          <p className={styles.toMonospaceGray}>Freelance Frontend Developer</p>
           <div className="mb-3">
             <Button variant="outline-primary">Contactame!</Button>
           </div>
@@ -113,8 +109,6 @@ export default function Home() {
           </Row>
         </Container>
       </section>
-
-      <Footer />
     </>
   );
 }

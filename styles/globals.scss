@@ -11,18 +11,21 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 52px 0 0 0;
   background-color: $background;
 }
 
 h1 {
   font-family: 'Roboto', sans-serif;
   color: $lightgray;
+  letter-spacing: 1px;
 }
 
 h2 {
   font-family: 'Roboto Mono', monospace;
   color: $primary;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 h3 {
@@ -33,26 +36,17 @@ h3 {
 p {
   font-family: 'Roboto', sans-serif;
   color: $gray;
+  letter-spacing: 1px;
+}
+
+ul {
+  letter-spacing: 1px;
+}
+
+section {
+  margin-bottom: 8rem;
 }
 
 .btn {
   font-family: 'Roboto Mono', sans-serif;
-}
-
-.to-monospace {
-  font-family: 'Roboto Mono', monospace;
-
-  &-primary {
-    @extend .to-monospace;
-    color: $primary;
-  }
-
-  &-gray {
-    @extend .to-monospace;
-    color: $gray;
-  }
-}
-
-.color-gray {
-  color: $gray;
 }

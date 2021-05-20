@@ -1,9 +1,27 @@
 @import '../variables';
 
 .mainContent {
-  height: 100vh;
+  height: calc(100vh - 52px);
   display: flex;
   align-items: center;
+}
+
+.toMonospace {
+  font-family: 'Roboto Mono', monospace;
+
+  &Primary {
+    @extend .toMonospace;
+    color: $primary;
+  }
+
+  &Gray {
+    @extend .toMonospace;
+    color: $gray;
+  }
+}
+
+.colorGray {
+  color: $gray;
 }
 
 .list {

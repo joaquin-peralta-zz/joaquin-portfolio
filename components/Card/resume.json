@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Técnico Mecánico Electricista",
+    "years": ["2008", "2013"],
+    "institution": "Escuela Industrial Superior"
+  },
+  {
+    "title": "Auxiliar Bilingüe Inglés - Español",
+    "years": ["2002", "2012"],
+    "institution": "Instituto de Idiomas 3015 San Roque"
+  },
+  {
+    "title": "Licenciatura en Sonorización y Grabación",
+    "years": ["2015", "2020"],
+    "institution": "Universidad Nacional del Litoral"
+  }
+]
