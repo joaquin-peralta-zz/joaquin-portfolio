@@ -1,0 +1,33 @@
+@import '../variables';
+
+.img {
+  opacity: 1;
+  transition: 0.4s;
+  z-index: 0;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.imgButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 128px;
+  height: 128px;
+  background: black;
+  border: 0;
+  border-radius: 50%;
+  text-transform: uppercase;
+  color: $lightgray;
+  font-family: 'Roboto Mono', monospace;
+  opacity: 0;
+  transition: 0.4s;
+
+  &:hover {
+    opacity: 1;
+    transition: 0.4s;
+  }
+}

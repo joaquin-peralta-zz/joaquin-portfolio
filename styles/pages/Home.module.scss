@@ -1,0 +1,13 @@
+@import '../variables';
+
+.mainContent {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  color: $primary;
+  font-family: 'Roboto Mono', monospace;
+  line-height: 2.5;
+}

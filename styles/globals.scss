@@ -1,0 +1,58 @@
+@import './variables';
+@import './custom';
+@import "~bootstrap/scss/bootstrap";
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $background;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  color: $lightgray;
+}
+
+h2 {
+  font-family: 'Roboto Mono', monospace;
+  color: $primary;
+}
+
+h3 {
+  font-family: 'Roboto Mono', monospace;
+  color: $primary;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  color: $gray;
+}
+
+.btn {
+  font-family: 'Roboto Mono', sans-serif;
+}
+
+.to-monospace {
+  font-family: 'Roboto Mono', monospace;
+
+  &-primary {
+    @extend .to-monospace;
+    color: $primary;
+  }
+
+  &-gray {
+    @extend .to-monospace;
+    color: $gray;
+  }
+}
+
+.color-gray {
+  color: $gray;
+}

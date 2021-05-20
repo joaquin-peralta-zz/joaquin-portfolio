@@ -1,0 +1,11 @@
+@import '../variables';
+
+.avatar {
+  border-radius: 5%;
+}
+
+.list {
+  color: $gray;
+  line-height: 2.5;
+  font-family: 'Roboto Mono', monospace;
+}

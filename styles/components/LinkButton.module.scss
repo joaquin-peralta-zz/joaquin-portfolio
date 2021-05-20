@@ -1,0 +1,17 @@
+@import '../variables';
+
+.button {
+  color: $gray;
+  font-family: 'Roboto Mono', monospace;
+  background-color: $background;
+  border: none;
+  padding: 0;
+  border-bottom: 2px dotted $gray;
+  margin-left: 0.5rem;
+
+  &:hover {
+    color: $lightgray;
+    border-bottom: 2px dotted $lightgray;
+    transition: 0.2s;
+  }
+}
