@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Inicio",
+    "link": "/"
+  },
+  {
+    "title": "Experiencia",
+    "link": "/skills"
+  },
+  {
+    "title": "Portfolio",
+    "link": "/portfolio"
+  },
+  {
+    "title": "Contacto",
+    "link": "/contact"
+  }
+]
