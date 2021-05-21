@@ -14,7 +14,7 @@ const SlideGallery = ({ slides }: Props) => {
       <Row className="p-0">
         {slides.map((url) => (
           <Col key={url} className="p-0 text-center">
-            <div className="position-relative">
+            <button className={styles.button} type="button">
               <Image
                 src={url}
                 alt={`Imagen de portada de ${url} `}
@@ -23,11 +23,7 @@ const SlideGallery = ({ slides }: Props) => {
                 layout="intrinsic"
                 className={styles.img}
               />
-              <button className={styles.button} type="button">
-                Ver <br />
-                proyecto
-              </button>
-            </div>
+            </button>
           </Col>
         ))}
       </Row>
