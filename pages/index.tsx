@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import LinkButton from '@components/LinkButton/LinkButton';
+import Image from 'next/image';
 import { Avatar, AvatarInfo } from '@components/Avatar/Avatar';
 import ProjectGallery from '@components/ProjectGallery/ProjectGallery';
 import projects from '@db/projects.json';
@@ -19,24 +20,39 @@ export default function Home() {
 
       <main className={styles.mainContent}>
         <Container>
-          <div className={styles.mainText}>
-            <p className={styles.toMonospacePrimary}>Hola, soy</p>
-            <h1>
-              Joaquín, <br />
-              <span className={styles.colorGray}>web developer.</span>
-            </h1>
-            <p className={styles.toMonospaceGray}>Freelance Frontend Developer</p>
-            <div className="mb-3">
-              <Button href="/contact" variant="outline-primary">
-                Contactame!
-              </Button>
-            </div>
-            <div>
-              <LinkButton>Ver más</LinkButton>
-            </div>
-          </div>
+          <Row className="align-items-center">
+            <Col>
+              <div className={styles.mainText}>
+                <p className={styles.toMonospacePrimary}>Hola, soy</p>
+                <h1>
+                  Joaquín, <br />
+                  <span className={styles.colorGray}>web developer.</span>
+                </h1>
+                <p className={styles.toMonospaceGray}>Freelance Frontend Developer</p>
+                <div className="mb-3">
+                  <Button href="/contact" variant="outline-primary">
+                    Contactame!
+                  </Button>
+                </div>
+                <div>
+                  <LinkButton>Ver más</LinkButton>
+                </div>
+              </div>
+            </Col>
+            <Col className={styles.imageContainer}>
+              <Image
+                src="/laptop3.png"
+                alt="Una laptop"
+                width={600}
+                height={450}
+                layout="intrinsic"
+              />
+            </Col>
+          </Row>
         </Container>
       </main>
+
+      <hr className={styles.divisor} />
 
       <section>
         <Container>
@@ -77,6 +93,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <hr className={styles.divisor} />
+
       <section>
         <Container>
           <h2>Portfolio.</h2>
@@ -88,7 +106,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
+      <section className={styles.contactSection}>
         <Container>
           <h2>Contacto.</h2>
           <p>
@@ -96,7 +114,7 @@ export default function Home() {
             puedes enviarme un mensaje a través del siguiente formulario o contactarme por las redes
             sociales. ¡Te responderé a la brevedad!
           </p>
-          <Row xs={1} md={2}>
+          <Row xs={1} md={2} className="pb-3">
             <Col>
               <MyForm />
             </Col>
