@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Novel Técnica",
+    "avatar": "/novel-tecnica.png",
+    "description":
+      "Es un sitio web sencillo e informativo en el cual utilicé unicamente Adobe XD para su diseño y Next.js como framework para desarrollo.",
+    "technologies": ["Next.js"],
+    "repo": "https://github.com/joaquin-peralta/novel-tecnica-nextjs",
+    "extLink": "https://noveltecnica.com"
+  },
+  {
+    "title": "Pocha Knit",
+    "avatar": "/pocha-knit.jpeg",
+    "description":
+      "Este proyecto es una ecommerce diseñada y desarrollada en Next.js y Strapi como CMS.",
+    "technologies": ["Next.js", "Strapi", "Mercadopago API"],
+    "repo": "https://github.com/joaquin-peralta/pochaknit-ecommerce",
+    "extLink": "https://pochaknit.com"
+  }
+]

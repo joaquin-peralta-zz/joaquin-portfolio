@@ -8,8 +8,12 @@ const Footer = () => {
       <div className={styles.container}>
         <hr className={styles.divisor} />
         <IconContext.Provider value={{ size: '36px', color: '#AEB9C2' }}>
-          <FaLinkedin className="mr-3" />
-          <FaGithub />
+          <a href="https://www.linkedin.com/in/joaquin-peralta-1074291ba">
+            <FaLinkedin className="mr-3" />
+          </a>
+          <a href="https://github.com/joaquin-peralta?tab=repositories">
+            <FaGithub />
+          </a>
         </IconContext.Provider>
       </div>
     </footer>

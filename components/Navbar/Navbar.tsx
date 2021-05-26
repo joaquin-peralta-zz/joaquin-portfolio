@@ -7,7 +7,7 @@ import { MdMenu, MdClose } from 'react-icons/md';
 import Link from 'next/link';
 import { IconContext } from 'react-icons';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import items from './menuData.json';
+import items from '@db/menuData.json';
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);

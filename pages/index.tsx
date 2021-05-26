@@ -6,7 +6,8 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import LinkButton from '@components/LinkButton/LinkButton';
 import { Avatar, AvatarInfo } from '@components/Avatar/Avatar';
-import SlideGallery from '@components/SlideGallery/SlideGallery';
+import ProjectGallery from '@components/ProjectGallery/ProjectGallery';
+import projects from '@db/projects.json';
 import MyForm from '@components/MyForm/MyForm';
 
 export default function Home() {
@@ -26,7 +27,9 @@ export default function Home() {
             </h1>
             <p className={styles.toMonospaceGray}>Freelance Frontend Developer</p>
             <div className="mb-3">
-              <Button variant="outline-primary">Contactame!</Button>
+              <Button href="/contact" variant="outline-primary">
+                Contactame!
+              </Button>
             </div>
             <div>
               <LinkButton>Ver más</LinkButton>
@@ -79,7 +82,7 @@ export default function Home() {
           <h2>Portfolio.</h2>
           <p>Les comparto algunos proyectos en los que estuve trabajando recientemente.</p>
         </Container>
-        <SlideGallery slides={['/novel-tecnica.png', '/pocha-knit.jpeg']} />
+        <ProjectGallery projects={projects} />
         <div className="text-center mt-4">
           <Button variant="outline-primary">Ver más!</Button>
         </div>

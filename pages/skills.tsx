@@ -3,8 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SkillsList from '@components/SkillsList/SkillsList';
-import skills from '@components/SkillsList/skills.json';
-import resume from '@components/Card/resume.json';
+import skills from '@db/skills.json';
+import resume from '@db/resume.json';
 import ResumeCard from '@components/Card/ResumeCard';
 import Button from 'react-bootstrap/Button';
 

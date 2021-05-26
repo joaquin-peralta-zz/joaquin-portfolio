@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Container from 'react-bootstrap/Container';
-import SlideGallery from '@components/SlideGallery/SlideGallery';
+import projects from '@db/projects.json';
+import ProjectGallery from '@components/ProjectGallery/ProjectGallery';
 
 const Portfolio = () => {
   return (
@@ -13,7 +14,7 @@ const Portfolio = () => {
         <Container>
           <h2>Portfolio.</h2>
         </Container>
-        <SlideGallery slides={['/novel-tecnica.png', '/pocha-knit.jpeg']} />
+        <ProjectGallery projects={projects} />
       </section>
     </>
   );
