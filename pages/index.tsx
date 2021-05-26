@@ -41,7 +41,7 @@ export default function Home() {
             </Col>
             <Col className={styles.imageContainer}>
               <Image
-                src="/laptop3.png"
+                src="/laptop.png"
                 alt="Una laptop"
                 width={600}
                 height={450}
