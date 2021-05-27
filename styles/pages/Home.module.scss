@@ -33,7 +33,12 @@
 }
 
 .divisor {
+  display: none;
   border-color: rgb(64, 24, 109);
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 }
 
 .list {
