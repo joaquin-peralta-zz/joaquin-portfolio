@@ -41,6 +41,7 @@
         "custom": "ignore"
     }],
       "react/prop-types": "off",
+      "no-return-assign": "off",
       "prettier/prettier": "error"
     }
 }

@@ -1,5 +1,15 @@
 @import '../variables';
 
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: green;
+  z-index: 4;
+}
+
 .mainContent {
   height: calc(100vh - 52px);
   display: flex;
