@@ -28,6 +28,7 @@ export default function Home() {
   const [showFirstSec, setShowFirstSec] = useState(false);
   const [showSecondSec, setShowSecondSec] = useState(false);
   const [showThirdSec, setShowThirdSec] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
     if (intersectionFirst?.isIntersecting) setShowFirstSec(true);
@@ -39,6 +40,12 @@ export default function Home() {
     intersectionThird?.isIntersecting,
   ]);
 
+  const executeScroll = () => {
+    if (sectionFirstRef.current !== null) {
+      sectionFirstRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <Head>
@@ -49,33 +56,68 @@ export default function Home() {
         <Container>
           <Row className="align-items-center">
             <Col>
-              <div ref={mainTextRef} className={styles.mainText}>
-                <p className={styles.toMonospacePrimary}>Hola, soy</p>
-                <h1>
-                  Joaquín, <br />
-                  <span className={styles.colorGray}>web developer.</span>
-                </h1>
-                <p className={styles.toMonospaceGray}>Freelance Frontend Developer</p>
-                <div className="mb-3">
-                  <Button href="/contact" variant="outline-primary">
-                    Contactame!
-                  </Button>
+              <Transition
+                mountOnEnter
+                unmountOnExit
+                appear
+                in
+                addEndListener={(node, done) => {
+                  gsap.from(node, {
+                    x: -100,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power2.out',
+                    autoAlpha: 1,
+                    onComplete: done,
+                  });
+                }}
+              >
+                <div ref={mainTextRef} className={styles.mainText}>
+                  <p className={styles.toMonospacePrimary}>Hola, soy</p>
+                  <h1>
+                    Joaquín, <br />
+                    <span className={styles.colorGray}>web developer.</span>
+                  </h1>
+                  <p className={styles.toMonospaceGray}>Freelance Frontend Developer</p>
+                  <div className="mb-3">
+                    <Button href="/contact" variant="outline-primary">
+                      Contactame!
+                    </Button>
+                  </div>
+                  <div>
+                    <LinkButton onClick={executeScroll}>Ver más</LinkButton>
+                  </div>
                 </div>
-                <div>
-                  <LinkButton>Ver más</LinkButton>
-                </div>
-              </div>
+              </Transition>
             </Col>
             <Col className={styles.imageContainer}>
-              <div ref={imgRef}>
-                <Image
-                  src="/laptop.png"
-                  alt="Una laptop"
-                  width={600}
-                  height={450}
-                  layout="intrinsic"
-                />
-              </div>
+              <Transition
+                mountOnEnter
+                unmountOnExit
+                appear
+                in
+                addEndListener={(node, done) => {
+                  gsap.from(node, {
+                    y: -100,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power2.out',
+                    autoAlpha: 1,
+                    delay: 0.5,
+                    onComplete: done,
+                  });
+                }}
+              >
+                <div ref={imgRef}>
+                  <Image
+                    src="/laptop.png"
+                    alt="Una laptop"
+                    width={600}
+                    height={450}
+                    layout="intrinsic"
+                  />
+                </div>
+              </Transition>
             </Col>
           </Row>
         </Container>
@@ -130,11 +172,26 @@ export default function Home() {
             <Row xs={1} sm={2}>
               <Col className="text-center mb-3">
                 <Avatar src="/avatar.jpeg" />
-                <LinkButton>Más info...</LinkButton>
+                <LinkButton onClick={() => setShowInfo(true)}>Más info...</LinkButton>
               </Col>
-              <Col>
-                <AvatarInfo />
-              </Col>
+              <Transition
+                mountOnEnter
+                unmountOnExit
+                in={showInfo}
+                addEndListener={(node, done) => {
+                  gsap.from(node, {
+                    y: 50,
+                    opacity: 0,
+                    autoAlpha: 1,
+                    duration: 1,
+                    onComplete: done,
+                  });
+                }}
+              >
+                <Col>
+                  <AvatarInfo />
+                </Col>
+              </Transition>
             </Row>
           </Container>
         </Transition>
@@ -167,7 +224,9 @@ export default function Home() {
             </Container>
             <ProjectGallery projects={projects} />
             <div className="text-center mt-4">
-              <Button variant="outline-primary">Ver más!</Button>
+              <Button variant="outline-primary" href="/portfolio">
+                Ver más!
+              </Button>
             </div>
           </>
         </Transition>

@@ -1,14 +1,30 @@
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import SkillsList from '@components/SkillsList/SkillsList';
+import Skill from '@components/Skill/Skill';
 import skills from '@db/skills.json';
 import resume from '@db/resume.json';
 import ResumeCard from '@components/Card/ResumeCard';
 import Button from 'react-bootstrap/Button';
+import { useIntersection } from 'react-use';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { TransitionGroup } from 'react-transition-group';
 
 export default function Skills() {
+  const skillRef = useRef(null);
+  const cardRef = useRef(null);
+  const [showSkill, setShowSkill] = useState(false);
+  const [showCard, setShowCard] = useState(false);
+  const intersectionSkill = useIntersection(skillRef, { threshold: 0.9 });
+  const intersectionCard = useIntersection(cardRef, { threshold: 0.25 });
+
+  useEffect(() => {
+    if (intersectionSkill?.isIntersecting) setShowSkill(true);
+    if (intersectionCard?.isIntersecting) setShowCard(true);
+  }, [intersectionSkill?.isIntersecting, intersectionCard?.isIntersecting]);
+
   return (
     <>
       <Head>
@@ -28,14 +44,20 @@ export default function Skills() {
             Actualmente me dedico al diseño y desarrollo de páginas y aplicaciones web client-side
             con React. También tengo conocimientos de backend con Node.js y de bases de datos.
           </p>
-          <SkillsList list={skills} />
+          <div ref={skillRef}>
+            <TransitionGroup>
+              {skills.map((item, index) => (
+                <Skill key={item} skill={item} index={index} show={showSkill} />
+              ))}
+            </TransitionGroup>
+          </div>
         </Container>
       </section>
 
       <section>
         <Container>
           <h2>Formación académica.</h2>
-          <ul className="list-unstyled">
+          <ul ref={cardRef} className="list-unstyled">
             <Row xs={1} md={2} lg={3}>
               {resume.map((item) => (
                 <Col key={item.title} className="mb-3">
@@ -44,6 +66,7 @@ export default function Skills() {
                       title={item.title}
                       years={item.years}
                       institution={item.institution}
+                      show={showCard}
                     />
                   </li>
                 </Col>
