@@ -18,7 +18,7 @@ const Contact = () => {
           podés enviarme un mensaje a través del siguiente formulario o contactarme por las redes
           sociales. ¡Te responderé a la brevedad!
         </p>
-        <Row>
+        <Row xs={1} md={2}>
           <Col>
             <MyForm />
           </Col>

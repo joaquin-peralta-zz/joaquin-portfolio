@@ -2,6 +2,10 @@ import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
+import Alert from 'react-bootstrap/Alert';
+import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 
 const initialValues = {
   name: '',
@@ -14,6 +18,8 @@ const MyForm = () => {
   const [values, setValues] = useState(initialValues);
   // eslint-disable-next-line no-unused-vars
   const [onSubmitting, setOnSubmitting] = useState<boolean>(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showFailed, setShowFailed] = useState(false);
 
   const formRendered = useRef(true);
 
@@ -32,9 +38,51 @@ const MyForm = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const handleSubmit = (event: any) => {
+  const postMail = async (url = '', data = {}) => {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      return response.json();
+    } catch {
+      return false;
+    }
+  };
+
+  const handleSuccess = () => {
+    setShowSuccess(true);
+    setValues({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+    setOnSubmitting(false);
+  };
+
+  const handleFailed = () => {
+    setShowFailed(true);
+    setOnSubmitting(false);
+    setTimeout(() => setShowFailed(false), 5000);
+  };
+
+  const handleSubmit = async (event: any) => {
     if (event) event.preventDefault();
-    console.log(values);
+    setOnSubmitting(true);
+    const response = await postMail('/api/contact', { values });
+
+    console.log(response);
+
+    if (response) {
+      response.success ? handleSuccess() : handleFailed();
+    } else {
+      handleFailed();
+    }
   };
 
   return (
@@ -50,6 +98,7 @@ const MyForm = () => {
                 placeholder="Nombre"
                 onChange={handleChange}
                 required
+                disabled={onSubmitting}
               />
             </Form.Group>
           </Col>
@@ -62,6 +111,7 @@ const MyForm = () => {
                 placeholder="Email"
                 onChange={handleChange}
                 required
+                disabled={onSubmitting}
               />
             </Form.Group>
           </Col>
@@ -74,6 +124,7 @@ const MyForm = () => {
             placeholder="Asunto"
             onChange={handleChange}
             required
+            disabled={onSubmitting}
           />
         </Form.Group>
         <Form.Group controlId="message">
@@ -85,13 +136,42 @@ const MyForm = () => {
             rows={5}
             onChange={handleChange}
             required
+            disabled={onSubmitting}
           />
         </Form.Group>
         <div className="text-right">
-          <Button variant="outline-primary" type="submit">
-            Enviar!
+          <Button variant="outline-primary" type="submit" disabled={onSubmitting}>
+            {onSubmitting && (
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                className="mr-2"
+              />
+            )}
+            {onSubmitting ? 'Enviando...' : 'Enviar !'}
           </Button>
         </div>
+        <Modal show={showSuccess} onHide={() => setShowSuccess(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Mensaje enviado</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Te responderé a la brevedad ¡Saludos!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowSuccess(false)}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <Collapse in={showFailed}>
+          <div className="mt-2">
+            <Alert variant="danger">
+              No se pudo enviar el mail. ¡Intenta de nuevo en unos minutos!
+            </Alert>
+          </div>
+        </Collapse>
       </Form>
     </>
   );

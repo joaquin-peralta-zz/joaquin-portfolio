@@ -42,6 +42,7 @@
     }],
       "react/prop-types": "off",
       "no-return-assign": "off",
+      "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
       "prettier/prettier": "error"
     }
 }
