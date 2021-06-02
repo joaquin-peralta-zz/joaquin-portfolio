@@ -9,7 +9,6 @@ import resume from '@db/resume.json';
 import ResumeCard from '@components/Card/ResumeCard';
 import Button from 'react-bootstrap/Button';
 import { useIntersection } from 'react-use';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { TransitionGroup } from 'react-transition-group';
 
 export default function Skills() {

@@ -1,6 +1,5 @@
 import Layout from '@components/Layout/Layout';
 import Router from 'next/router';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import NProgress from 'nprogress';
 import type { AppProps } from 'next/app';
 import 'nprogress/nprogress.css';

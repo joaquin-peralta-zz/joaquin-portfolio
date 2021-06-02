@@ -13,8 +13,8 @@ import ProjectGallery from '@components/ProjectGallery/ProjectGallery';
 import projects from '@db/projects.json';
 import MyForm from '@components/MyForm/MyForm';
 import { useIntersection } from 'react-use';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Transition } from 'react-transition-group';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Home() {
   const mainTextRef = useRef(null);
@@ -29,6 +29,7 @@ export default function Home() {
   const [showSecondSec, setShowSecondSec] = useState(false);
   const [showThirdSec, setShowThirdSec] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 992px)' });
 
   useEffect(() => {
     if (intersectionFirst?.isIntersecting) setShowFirstSec(true);
@@ -42,6 +43,7 @@ export default function Home() {
 
   const executeScroll = () => {
     if (sectionFirstRef.current !== null) {
+      // @ts-ignore
       sectionFirstRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
     }
   };
@@ -169,30 +171,16 @@ export default function Home() {
               </Col>
             </Row>
 
-            <Row xs={1} sm={2}>
-              <Col className="text-center mb-3">
-                <Avatar src="/avatar.jpeg" />
+            <div
+              className="position-relative"
+              style={{ height: isDesktopOrLaptop ? '256px' : '600px' }}
+            >
+              <Avatar src="/avatar.jpeg" transform={showInfo} />
+              <AvatarInfo transform={showInfo} />
+              <div className={showInfo ? 'd-none' : styles.linkButton}>
                 <LinkButton onClick={() => setShowInfo(true)}>Más info...</LinkButton>
-              </Col>
-              <Transition
-                mountOnEnter
-                unmountOnExit
-                in={showInfo}
-                addEndListener={(node, done) => {
-                  gsap.from(node, {
-                    y: 50,
-                    opacity: 0,
-                    autoAlpha: 1,
-                    duration: 1,
-                    onComplete: done,
-                  });
-                }}
-              >
-                <Col>
-                  <AvatarInfo />
-                </Col>
-              </Transition>
-            </Row>
+              </div>
+            </div>
           </Container>
         </Transition>
       </section>

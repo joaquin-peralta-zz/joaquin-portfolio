@@ -27,14 +27,6 @@ const Navbar = () => {
                 {showNav && <MdClose style={{ fontSize: '24px', color: '#60B6F8' }} />}
               </button>
             </Col>
-            <Col className="text-right">
-              <button className={styles.langButton} type="button">
-                ES
-              </button>
-              <button className={styles.langButton} type="button">
-                EN
-              </button>
-            </Col>
           </Row>
         </Container>
       </header>
