@@ -35,11 +35,11 @@
   z-index: 2;
   background-color: $background;
   transform: translateY(calc(-100% - 52px));
-  transition: 0.4s;
 
   &Open {
     @extend .navContainer;
     transform: translateY(0);
+    transition: 0.4s;
   }
 }
 

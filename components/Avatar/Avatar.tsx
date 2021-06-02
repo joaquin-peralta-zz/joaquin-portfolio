@@ -59,6 +59,9 @@ export const AvatarInfo = ({ transform }: AvatarInfoProps) => {
 
   return (
     <Transition
+      mountOnEnter
+      unmountOnExit
+      appear
       in={transform}
       addEndListener={(node, done) => {
         gsap.to(node, {
