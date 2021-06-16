@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,21 +8,83 @@ import skills from '@db/skills.json';
 import resume from '@db/resume.json';
 import ResumeCard from '@components/Card/ResumeCard';
 import Button from 'react-bootstrap/Button';
-import { useIntersection } from 'react-use';
-import { TransitionGroup } from 'react-transition-group';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Skills() {
-  const skillRef = useRef(null);
-  const cardRef = useRef(null);
-  const [showSkill, setShowSkill] = useState(false);
-  const [showCard, setShowCard] = useState(false);
-  const intersectionSkill = useIntersection(skillRef, { threshold: 0.9 });
-  const intersectionCard = useIntersection(cardRef, { threshold: 0.25 });
+  const sectionFirstRef = useRef<HTMLElement>(null);
+  const sectionSecondRef = useRef<HTMLElement>(null);
+  const skillRefs = useRef<any>([]);
+  const cardRefs = useRef<any>([]);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (intersectionSkill?.isIntersecting) setShowSkill(true);
-    if (intersectionCard?.isIntersecting) setShowCard(true);
-  }, [intersectionSkill?.isIntersecting, intersectionCard?.isIntersecting]);
+    if (sectionFirstRef.current) {
+      gsap.from(sectionFirstRef.current, {
+        scrollTrigger: {
+          trigger: sectionFirstRef.current,
+        },
+        y: 50,
+        opacity: 0,
+        autoAlpha: 0,
+      });
+    }
+
+    if (skillRefs.current) {
+      gsap.to(skillRefs.current, {
+        scrollTrigger: {
+          trigger: skillRefs.current,
+          start: 'top center',
+        },
+        opacity: 1,
+        autoAlpha: 1,
+        rotateY: 360,
+        backgroundColor: 'transparent',
+        stagger: 0.1,
+      });
+    }
+
+    if (sectionSecondRef.current) {
+      gsap.from(sectionSecondRef.current, {
+        scrollTrigger: {
+          trigger: sectionSecondRef.current,
+        },
+        y: 50,
+        opacity: 0,
+        autoAlpha: 0,
+      });
+    }
+
+    if (cardRefs.current) {
+      gsap.from(cardRefs.current, {
+        scrollTrigger: {
+          trigger: cardRefs.current,
+          start: 'bottom bottom',
+        },
+        opacity: 0,
+        autoAlpha: 0,
+        scale: 0.5,
+        stagger: 0.2,
+        ease: 'bounce',
+      });
+    }
+
+    if (buttonRef.current) {
+      gsap.from(buttonRef.current, {
+        scrollTrigger: {
+          trigger: buttonRef.current,
+          start: 'bottom bottom',
+        },
+        opacity: 0,
+        autoAlpha: 0,
+        scale: 0.5,
+        stagger: 0.2,
+        ease: 'bounce',
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -30,7 +92,7 @@ export default function Skills() {
         <title>Joaquín Peralta | Experiencia</title>
       </Head>
 
-      <section>
+      <section ref={sectionFirstRef}>
         <Container>
           <h2>Habilidades y experiencia.</h2>
           <p>
@@ -43,29 +105,31 @@ export default function Skills() {
             Actualmente me dedico al diseño y desarrollo de páginas y aplicaciones web client-side
             con React. También tengo conocimientos de backend con Node.js y de bases de datos.
           </p>
-          <div ref={skillRef}>
-            <TransitionGroup>
-              {skills.map((item, index) => (
-                <Skill key={item} skill={item} index={index} show={showSkill} />
-              ))}
-            </TransitionGroup>
+          <div>
+            {skills.map((item, index) => (
+              <Skill
+                key={item}
+                skill={item}
+                ref={(element) => skillRefs.current.splice(index, 1, element)}
+              />
+            ))}
           </div>
         </Container>
       </section>
 
-      <section>
+      <section ref={sectionSecondRef}>
         <Container>
           <h2>Formación académica.</h2>
-          <ul ref={cardRef} className="list-unstyled">
+          <ul className="list-unstyled">
             <Row xs={1} md={2} lg={3}>
-              {resume.map((item) => (
+              {resume.map((item, index) => (
                 <Col key={item.title} className="mb-3">
                   <li>
                     <ResumeCard
                       title={item.title}
                       years={item.years}
                       institution={item.institution}
-                      show={showCard}
+                      ref={(element) => cardRefs.current.splice(index, 1, element)}
                     />
                   </li>
                 </Col>
@@ -74,6 +138,7 @@ export default function Skills() {
           </ul>
           <div className="text-center">
             <Button
+              ref={buttonRef}
               href="https://drive.google.com/file/d/1RxB6BMDvIsB2AzOAwC24Q7dnk5h2mArb/view?usp=sharing"
               variant="primary"
             >

@@ -144,7 +144,16 @@ export default function Home() {
                     mainInnerRef.current[4] = element;
                   }}
                 >
-                  <LinkButton>Ver más</LinkButton>
+                  <LinkButton
+                    onClick={() =>
+                      sectionFirstRef.current?.scrollIntoView({
+                        block: 'start',
+                        behavior: 'smooth',
+                      })
+                    }
+                  >
+                    Ver más
+                  </LinkButton>
                 </div>
               </div>
             </Col>
